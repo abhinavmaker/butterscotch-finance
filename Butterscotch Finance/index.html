@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butterscotch Finance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Butterscotch Finance</div>
+            <div class="nav-links">
+                <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+                <button class="nav-btn" data-page="bills">Bills</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="dashboard" class="page active">
+        <div class="container">
+            <div class="page-title">Dashboard</div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Monthly Total</div>
+                    <div class="stat-value" id="monthlyTotal">$0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Bill Count</div>
+                    <div class="stat-value" id="billCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Highest Bill</div>
+                    <div class="stat-value" id="highestBill">$0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Average Bill</div>
+                    <div class="stat-value" id="avgBill">$0.00</div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-title">Bills by Frequency</div>
+                    <div id="frequencyChart" class="chart"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Amount Distribution</div>
+                    <div id="amountChart" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="upcoming-section">
+                <div class="upcoming-header">
+                    <div class="section-title">Upcoming Bills</div>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="dueDate">Sort by Due Date</option>
+                        <option value="price">Sort by Price</option>
+                        <option value="closest">Closest Due Date</option>
+                        <option value="dateAdded">Date Added</option>
+                    </select>
+                </div>
+                <div id="upcomingBills" class="upcoming-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bills" class="page">
+        <div class="container">
+            <div class="page-title">Bills</div>
+            
+            <div class="bills-header">
+                <button class="add-bill-btn" id="toggleFormBtn">Add New Bill</button>
+            </div>
+
+            <form id="billForm" class="bill-form hidden">
+                <div class="form-group">
+                    <label>Bill Name</label>
+                    <input type="text" id="billName" placeholder="e.g., Netflix, Rent" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="billAmount" placeholder="0.00" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Billing Frequency</label>
+                    <select id="billFrequency" required>
+                        <option value="">Select frequency</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="biweekly">Bi-weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="number" id="billDueDate" placeholder="Day of month (1-31)" min="1" max="31" required>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Add Bill</button>
+                    <button type="button" class="cancel-btn" id="cancelFormBtn">Cancel</button>
+                </div>
+            </form>
+
+            <div id="billsList" class="bills-list"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
